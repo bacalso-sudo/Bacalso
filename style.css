@@ -1,0 +1,227 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0a192f; 
+    color: #ccd6f6; 
+}
+
+header {
+    background-color: #112240;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ccd6f6;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #64ffda; 
+}
+
+.contact-button {
+    background-color: transparent;
+    border: 1px solid #64ffda;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #64ffda;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+#hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px 20px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.hero-content h2 {
+    font-size: 2em;
+    color: #64ffda;
+    margin-bottom: 20px;
+}
+
+.my-projects-button {
+    background-color: #64ffda;
+    color: #0a192f;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.my-projects-button:hover {
+    background-color: #49c6b2;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 80%;
+    border-radius: 10px;
+}
+
+#about {
+    padding: 80px 20px;
+    background-color: #112240;
+}
+
+#about h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#about p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.show-projects-button {
+    background-color: transparent;
+    border: 1px solid #64ffda;
+    border-radius: 5px;
+    padding: 15px 30px;
+    color: #64ffda;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.show-projects-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+#skills {
+    padding: 80px 20px;
+}
+
+#skills h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.skill {
+    background-color: #112240;
+    color: #ccd6f6;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill a {
+    text-decoration: none;
+    color: #ccd6f6;
+    display: block; 
+    width: 100%;
+    height: 100%;
+}
+
+.skill:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.experience {
+    text-align: center;
+    font-size: 1.3em;
+    color: #64ffda;
+}
+
+footer {
+    background-color: #112240;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #64ffda;
+    text-decoration: none;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header, #hero, #about, #skills, footer {
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animated-text {
+    animation: slideIn 1s ease-out forwards;
+}
+
+.animated-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

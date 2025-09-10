@@ -1,20 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio </title>
+    <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a192f;
+            color: #ccd6f6;
+            scroll-behavior: smooth;
+            /* Enable smooth scrolling */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+        }
+
+        header {
+            background-color: #112240;
+            padding: 20px 0;
+            position: fixed;
+            /* Fixed header */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            /* Ensure it stays on top */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: #ccd6f6;
+            text-decoration: none;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: calc(0.1s * var(--index));
+            transition: color 0.3s ease;
+        }
+
+        nav ul li:nth-child(1) a {
+            --index: 1;
+        }
+
+        nav ul li:nth-child(2) a {
+            --index: 2;
+        }
+
+        nav ul li:nth-child(3) a {
+            --index: 3;
+        }
+
+        nav ul li:nth-child(4) a {
+            --index: 4;
+        }
+
+        nav a:hover {
+            color: #64ffda;
+        }
+
+        .contact-button {
+            background-color: transparent;
+            border: 1px solid #64ffda;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #64ffda;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+            min-height: 600px;
+            /* Ensure sections are visible */
+            position: relative;
+            z-index: 1;
+            /* Place sections above video */
+            background: rgba(10, 25, 47, 0.8);
+            /* Add a semi-transparent background */
+            backdrop-filter: blur(5px);
+            /* Add a blur effect */
+        }
+
+        #hero {
+            padding-top: 150px;
+            /* Adjust padding to accommodate fixed header */
+        }
+
+        #about {
+            background-color: rgba(17, 34, 64, 0.8);
+        }
+
+        #skills {
+            background-color: rgba(10, 25, 47, 0.8);
+        }
+
+        #projects {
+            background-color: rgba(17, 34, 64, 0.8);
+        }
+
+        #contact {
+            background-color: rgba(10, 25, 47, 0.8);
+        }
+
+        footer {
+            background-color: #112240;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            margin-top: auto;
+            position: relative;
+            z-index: 1;
+            /* Place above video */
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Skill Styles */
+        .skill {
+            background-color: #112240;
+            color: #ccd6f6;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            /* Hide overflowing progress bar */
+            display: flex;
+            /* Use flexbox to align items */
+            justify-content: space-between;
+            /* Space between text and percentage */
+            align-items: center;
+            /* Vertically center items */
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #64ffda;
+            /* Progress bar color */
+            opacity: 0.3;
+            /* Make it subtle */
+            z-index: 0;
+            /* Place behind the text */
+            width: 0;
+            /* Initial width */
+            transition: width 0.5s ease;
+            /* Animation for width change */
+        }
+
+        .skill-text {
+            z-index: 2;
+            /* Ensure text is above the bar */
+            color: #ccd6f6;
+            /* Text color */
+            font-size: 0.9em;
+            /* Adjust as needed */
+            margin-left: 5px;
+            /* Add some space between text and percentage */
+        }
+
+        .skill a {
+            text-decoration: none;
+            color: #ccd6f6;
+            display: block;
+            position: relative;
+            z-index: 1;
+            /* Ensure text is above the progress bar */
+        }
+
+        /* Specific skill percentages */
+        .html-skill .skill-bar {
+            width: 90%;
+            /* Example: 90% for HTML */
+        }
+
+        .css-skill .skill-bar {
+            width: 80%;
+            /* Example: 80% for CSS */
+        }
+
+        .js-skill .skill-bar {
+            width: 70%;
+            /* Example: 70% for JavaScript */
+        }
+
+        .react-skill .skill-bar {
+            width: 75%;
+            /* Example: 75% for React */
+        }
+
+        .node-skill .skill-bar {
+            width: 60%;
+            /* Example: 60% for Node.js */
+        }
+
+        .git-skill .skill-bar {
+            width: 85%;
+            /* Example: 85% for Git */
+        }
+
+        /* Projects Styles */
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .project {
+            background-color: #112240;
+            color: #ccd6f6;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            /* Adjust as needed */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .project h3 {
+            margin-top: 0;
+            color: #64ffda;
+        }
+
+        .project p {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Video Background Styles */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            /* Place behind all content */
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+            /* Cover the entire area */
+        }
+    </style>
 </head>
+
 <body>
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="/vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <header>
         <nav>
             <div class="logo">PORTFOLIO</div>
             <ul>
-                <li><a href="#">ABOUT ME</a></li>
-                <li><a href="#">SKILLS</a></li>
-                <li><a href="#">PROJECTS</a></li>
-                <li><a href="#" class="contact-button">CONTACT</a></li>
+                <li><a href="#about">ABOUT ME</a></li>
+                <li><a href="#skills">SKILLS</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#contact" class="contact-button">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -25,41 +330,99 @@
             <h2 class="animated-text">Full Stack Developer</h2>
         </div>
         <div class="hero-image">
-            <img src="IMG_20250823_162823_740.jpg" alt="Brian Photo" />
+            <img src="/IMG_20250823_162823_740.jpg" alt="James Brian Bacalso">
         </div>
     </section>
 
     <section id="about">
         <h2 class="animated-text">WHO AM I?</h2>
-        <p>Adept at navigating the entire spectrum of web development, I function as a full-stack developer by seamlessly integrating front-end user interfaces built with technologies like React and Angular with robust back-end systems powered by Node.js and Python, all while managing databases such as PostgreSQL and MongoDB, ensuring a cohesive and dynamic application that meets both client-side and server-side requirements.</p>
-        <p>With a holistic understanding of web architecture, as a full-stack developer, I am skilled in crafting interactive and responsive user experiences through front-end proficiency in HTML, CSS, and JavaScript, complemented by a strong command over back-end operations involving server management, API development using frameworks like Express.js and Django, and database administration, enabling me to independently drive projects from conception to deployment and maintenance.</p>
-        <p>Embracing the challenges of modern web development, my role as a full-stack developer involves a comprehensive approach where I leverage front-end expertise to create engaging interfaces with technologies like Vue.js and combine it with back-end mastery in building scalable and efficient server-side solutions using platforms such as Ruby on Rails and databases like MySQL, allowing me to deliver end-to-end solutions that are both aesthetically pleasing and functionally robust.</p>
-        
+        <p>Adept at navigating the entire spectrum of web development, I function as a full-stack developer by seamlessly
+            integrating front-end user interfaces built with technologies like React and Angular with robust back-end systems
+            powered by Node.js and Python, all while managing databases such as PostgreSQL and MongoDB, ensuring a cohesive
+            and dynamic application that meets both client-side and server-side requirements.</p>
+        <p>With a holistic understanding of web architecture, as a full-stack developer, I am skilled in crafting
+            interactive and responsive user experiences through front-end proficiency in HTML, CSS, and JavaScript,
+            complemented by a strong command over back-end operations involving server management, API development using
+            frameworks like Express.js and Django, and database administration, enabling me to independently drive projects
+            from conception to deployment and maintenance.</p>
+        <p>Embracing the challenges of modern web development, my role as a full-stack developer involves a comprehensive
+            approach where I leverage front-end expertise to create engaging interfaces with technologies like Vue.js and
+            combine it with back-end mastery in building scalable and efficient server-side solutions using platforms such as
+            Ruby on Rails and databases like MySQL, allowing me to deliver end-to-end solutions that are both aesthetically
+            pleasing and functionally robust.</p>
     </section>
 
-   <section id="skills">
+    <section id="skills">
         <h2 class="animated-text">MY SKILLS</h2>
         <div class="skills-container">
-            <div class="skill"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></div>
-            <div class="skill"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></div>
-            <div class="skill"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></div>
-            <div class="skill"><a href="https://react.dev/">React</a></div>
-            <div class="skill"><a href="https://nodejs.org/en/docs/">Node.js</a></div>
-            <div class="skill"><a href="https://git-scm.com/doc">Git</a></div>
-
+            <div class="skill html-skill">
+                <a href="">HTML</a>
+                <div class="skill-bar"></div>
+                <span class="skill-text">90%</span>
+            </div>
+            <div class="skill css-skill">
+                <a href="">CSS</a>
+                <div class="skill-bar"></div>
+                <span class="skill-text">80%</span>
+            </div>
+            <div class="skill js-skill">
+                <a href="">JavaScript</a>
+                <div class="skill-bar"></div>
+                <span class="skill-text">70%</span>
+            </div>
+            <div class="skill react-skill">
+                <a href="">React</a>
+                <div class="skill-bar"></div>
+                <span class="skill-text">75%</span>
+            </div>
+            <div class="skill node-skill">
+                <a href="">Node.js</a>
+                <div class="skill-bar"></div>
+                <span class="skill-text">60%</span>
+            </div>
+            <div class="skill git-skill">
+                <a href="">Git</a>
+                <div class="skill-bar"></div>
+                <span class="skill-text">85%</span>
+            </div>
         </div>
         <div class="experience">
             4 Years Experience Working
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 James Brian Bacalso</p>
-        <p>Submitted to Mr. Danny Gen Menardo</p>
+    <section id="projects">
+        <h2 class="animated-text">PROJECTS</h2>
+        <div class="projects-container">
+            <div class="project">
+                <h3>Project 1: E-commerce Website</h3>
+                <p>Developed a fully functional e-commerce website using React, Node.js, and MongoDB. Implemented user
+                    authentication, product catalog, shopping cart, and payment gateway integration.</p>
+            </div>
+            <div class="project">
+                <h3>Project 2: Task Management App</h3>
+                <p>Created a task management application with features such as task creation, assignment, progress tracking,
+                    and user roles. Built using Angular, Firebase, and responsive design principles.</p>
+            </div>
+            <div class="project">
+                <h3>Project 3: Personal Portfolio</h3>
+                <p>Designed and developed a personal portfolio website to showcase skills, projects, and experience. Utilized
+                    HTML, CSS, JavaScript, and modern web development techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="animated-text">CONTACT</h2>
         <p>Email: <a href="mailto:jamesbrianbacalso@gmail.com">jamesbrianbacalso@gmail.com</a></p>
         <p>Phone: +6394-5961-9707</p>
         <p>Address: Bantayan, Lasola Dr, Negros Oriental</p>
-    </footer>
+    </section>
 
+    <footer>
+        <p>&copy; 2025 James Brian Bacalso</p>
+        <p>Submitted to Mr. Danny Gen Menardo</p>
+    </footer>
 </body>
-</
+
+</html>
